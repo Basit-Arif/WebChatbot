@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Web Chatbot</title>
+    <link rel="stylesheet" href="static/css/chatbot.css"> <!-- Link to external CSS -->
+</head>
+<body>
+    <!-- Preload sound -->
+
+
+    <!-- Chatbot Icon -->
+    <div id="chatbot-icon" class="chatbot-icon">
+        <img src="static/img/13330989.png" alt="Chat Icon" width="150px"> <!-- Use your custom icon -->
+    </div>
+
+    <!-- Chatbot Window -->
+    <div id="chatbot-window" class="chatbot-window hidden">
+        <div class="chat-header">
+            <h4>Chat with us!</h4>
+            <button id="close-chat">X</button>
+        </div>
+        <div id="chat-messages" class="chat-messages">
+            <!-- Messages will be dynamically added here -->
+        </div>
+        
+        <!-- Chat Input inside the chatbot window -->
+        <div class="chat-input">
+            <input id="chat-input-text" type="text" placeholder="Type your message...">
+            <button id="send-message-btn">Send</button>
+        </div>
+    </div>
+
+    <script src="static/js/chatbot.js"></script> <!-- Link to JavaScript -->
+</body>
+</html>
