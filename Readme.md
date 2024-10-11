@@ -73,7 +73,7 @@ Start the Flask application with the following command:
 ```
 flask run
 ```
-The chatbot should now be running locally at http://127.0.0.1:5000.
+The chatbot should now be running locally at http://127.0.0.1:5002.
 
 
 ## Conclusion
