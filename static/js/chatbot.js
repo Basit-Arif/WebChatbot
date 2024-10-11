@@ -4,18 +4,14 @@ const chatIcon = document.getElementById('chatbot-icon');
 
 // Show chatbot window when the icon is clicked
 chatIcon.addEventListener('click', function() {
-    chatWindow.classList.remove('hidden'); // Remove hidden class
-    chatWindow.classList.add('visible'); // Add visible class for transition
+    chatWindow.style.display = 'block'; // Show the chatbot window
     chatIcon.style.display = 'none'; // Hide the chatbot icon
 });
 
 // Hide chatbot window when the close button is clicked
 document.getElementById('close-chat').addEventListener('click', function() {
-    chatWindow.classList.remove('visible'); // Remove visible class
-    setTimeout(() => {
-        chatWindow.classList.add('hidden'); // Add hidden class after transition
-        chatIcon.style.display = 'block'; // Show the chatbot icon
-    }, 300); // Timeout must match the transition duration
+    chatWindow.style.display = 'none'; // Hide the chatbot window
+    chatIcon.style.display = 'block'; // Show the chatbot icon
 });
 
 // Reference to the send button and chat messages area
@@ -34,8 +30,6 @@ chatInput.addEventListener('keydown', function(event) {
 // Add event listener to the send button
 sendButton.addEventListener('click', sendMessage);
 
-
-
 function sendMessage() {
     const inputField = document.getElementById("chat-input-text");
     const textEntered = inputField.value.trim();
@@ -47,7 +41,6 @@ function sendMessage() {
 
     addMessageToChat("You", textEntered, "user-message"); // Add user message to chat
     inputField.value = ''; // Clear the input field
-    disableSendButton(); // Disable the send button
 
     fetch('/chatbot', {
         method: 'POST',
@@ -57,11 +50,9 @@ function sendMessage() {
     .then(response => response.json())
     .then(data => {
         addMessageToChat('Bot', data.reply, "bot-message"); // Display bot's reply
-        enableSendButton(); // Re-enable the send button
     })
     .catch(error => {
         console.log(error);
-        enableSendButton(); // Ensure the send button is re-enabled even on error
     });
 }
 
@@ -74,12 +65,22 @@ function addMessageToChat(sender, message, messageType) {
     chatMessages.scrollTop = chatMessages.scrollHeight; // Auto scroll to latest message
 }
 
-// Functions to enable/disable send button
-function disableSendButton() {
-    sendButton.disabled = true; // Disable the send button
+function toggleChatbot() {
+    var chatbotWindow = document.getElementById('chatbotWindow');
+    var chatbotIcon = document.querySelector('.chatbot-icon');
+    
+    if (chatbotWindow.classList.contains('hidden')) {
+        chatbotWindow.classList.remove('hidden');
+        chatbotWindow.style.display = 'block'; // Show the chatbot window
+        chatbotIcon.classList.remove('bounce'); // Stop bouncing when chatbot is opened
+    } else {
+        chatbotWindow.classList.add('hidden');
+        chatbotWindow.style.display = 'none'; // Hide the chatbot window
+    }
 }
 
-function enableSendButton() {
-    sendButton.disabled = false; // Enable the send button
-}
-
+// Add bounce effect after 3 seconds if the chatbot is not opened
+setTimeout(function() {
+    var chatbotIcon = document.querySelector('.chatbot-icon');
+    chatbotIcon.classList.add('bounce');
+}, 3000);

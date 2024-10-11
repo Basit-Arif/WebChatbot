@@ -10,8 +10,9 @@ os.environ["OPENAI_API_KEY"]=os.getenv("OPEN_API_KEY")
 
 
 def initialize_qa():
+    current_directory = os.getcwd()
     # Initialize your retriever here (assuming you have it set up)
-    retreiver=insert_into_astra_db(load_and_format_docx("/Users/basitarif/Documents/streamlit/Webchatbot/portfolio_text.docx"))  # Your method for retrieving documents
+    retreiver=insert_into_astra_db(load_and_format_docx(f"{current_directory}/portfolio_text.docx"))  # Your method for retrieving documents
     # Initialize the QA chain
     qa = RetrievalQA.from_chain_type(
         chain_type='stuff',

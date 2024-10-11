@@ -30,7 +30,7 @@ def insert_into_astra_db(data):
     Args:
         data (dict): Contains 'document' (formatted content) and 'uuid' (list of UUIDs).
     """
-    # print("Data received for insertion:", data)  # Debug print
+    print("Data received for insertion:", data)  # Debug print
 
     # Check if 'document' and 'uuid' keys exist in the data
     documents = data.get("document", [])

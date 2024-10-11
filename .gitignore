@@ -1,2 +1,5 @@
 token.json
 .env
+.ipynb_checkpoint
+*.t
+*.pem
